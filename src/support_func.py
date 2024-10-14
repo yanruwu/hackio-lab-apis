@@ -9,10 +9,9 @@ import seaborn as sns
 import os
 from geopy.geocoders import OpenCage
 
-token = os.getenv("token")
-geolocator = OpenCage(api_key=token)
 
-def get_coords(location_list):
+
+def get_coords(location_list, token):
     """
     Obtiene las coordenadas geográficas (latitud y longitud) de una lista de ubicaciones.
 
@@ -31,6 +30,8 @@ def get_coords(location_list):
     names = []
     lat = []
     long = []
+
+    geolocator = OpenCage(api_key=token)
     
     for loc in tqdm(location_list):
         loc_get = geolocator.geocode(loc)
